@@ -1,0 +1,30 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #2979ff;
+}
+
+.morning-center {
+    width: 40%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.ptb-3 {
+    padding: 30px 0;
+}
+
+.ptb-2 {
+    padding: 20px 0;
+}
+
+.btn.green.accent-3 {
+    margin-bottom: 1rem;
+}

@@ -32,7 +32,6 @@
             "accountNo" => $client->accountNo,
             "amount" => $client->amount,
             "code" => $client->code
-    
         );
     
         // set response code - 200 OK

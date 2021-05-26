@@ -1,5 +1,7 @@
 <?php
     class Utilities{
+
+        public $response;
     
         public function getPaging($page, $total_rows, $records_per_page, $page_url){
     
@@ -39,6 +41,64 @@
             // json format
             return $paging_arr;
         }
+
+        // API Call function
+        function APIRequest($method, $data){
+            
+            // Curl Initialization
+            $curl = curl_init();
+
+            // Methods
+            switch ($method) {
+                
+                case "GET":
+                    $url = "http://localhost/sagnaProject/api/clients/read.php"; 
+                    curl_setopt($curl, CURLOPT_URL, $url);
+                    curl_setopt($curl, CURLOPT_HTTPGET, true);
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    $response_json = curl_exec($curl);
+                    $this->response = json_decode($response_json, true);
+                    break;
+
+                case "POST":
+                    $url = "http://localhost/sagnaProject/api/clients/create.php";
+                    curl_setopt($curl, CURLOPT_URL, $url);
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+                    $response_json = curl_exec($curl);
+                    $this->response = json_decode($response_json, JSON_PRETTY_PRINT, true);
+                    break;
+
+                case "DELETE":
+                    $url = "http://localhost/sagnaProject/api/clients/delete.php";
+                    curl_setopt($curl, CURLOPT_URL, $url);
+                    curl_setopt($curl,CURLOPT_CUSTOMREQUEST,'DELETE');
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+                    $response_json = curl_exec($curl); 
+                    $this->response=json_decode($response_json,true);
+                    break;
+
+                case "UPDATE":
+                    $url = "http://localhost/sagnaProject/api/clients/update.php";
+                    curl_setopt($curl, CURLOPT_URL, $url);
+                    curl_setopt($curl,CURLOPT_CUSTOMREQUEST,'UPDATE');
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+                    $response_json = curl_exec($curl); 
+                    $this->response=json_decode($response_json,true);
+                    break;
+                
+                default:
+                    header("Location: ../web/error_connection.php");
+
+
+            }
+
+            curl_close($curl);
+
+            if(!$this->response) { return false; }
+
+            return true;
+
+         }
     
     }
 ?>
