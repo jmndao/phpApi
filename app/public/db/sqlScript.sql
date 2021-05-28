@@ -1,7 +1,7 @@
--- Database Creation BANK
+-- Database Creation Banque
 
-CREATE DATABASE BANK;
-USE BANK;
+-- CREATE DATABASE Banque;
+USE Banque;
 
 -- Table for Clients
 
@@ -12,7 +12,7 @@ CREATE TABLE Client (
     accountNo VARCHAR(255),
     amount DECIMAL(10, 4),
     code VARCHAR(255),
-    startedDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    startedDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Inserting clients in the table Client
@@ -27,7 +27,7 @@ CREATE TABLE AccountManager(
     first_name VARCHAR(255),
     last_name VARCHAR(255),
     username VARCHAR(255),
-    password VARCHAR(255),
+    password VARCHAR(255)
 );
 
 -- Insert Account Manager in the Table AccountManager

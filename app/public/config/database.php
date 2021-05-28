@@ -3,9 +3,9 @@
     class DB {
         
         // Database credentials
-        private $hostname = "localhost";
+        private $hostname = "mysql";
         private $dbname = "Banque";
-        private $username = "root";
+        private $username = "malcom";
         private $pwd = "Passer123";
         public $conn;
 

@@ -1,4 +1,6 @@
 <?php
+
+    session_start();
     // required headers
     header("Access-Control-Allow-Origin: *");
     header("Content-Type: application/json; charset=UTF-8");
@@ -6,7 +8,7 @@
     header("Access-Control-Max-Age: 3600");
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
     
-    // include database and object files
+    // include database and object file
     include_once '../config/database.php';
     include_once '../objects/client.php';
     
@@ -17,36 +19,31 @@
     // prepare client object
     $client = new Client($db);
     
-    // get id of the client to be edited
+    // get client id
     $data = json_decode(file_get_contents("php://input"));
     
-    // set ID property of the client to be edited
+    // set client id to be deleted
     $client->id = $data->id;
     
-    // set client property values
-    $client->first_name = $data->first_name;
-    $client->last_name = $data->last_name;
-    $client->accountNo = $data->accountNo;
-    $client->amount = $data->amount;
-    $client->code = $data->code;
-    
-    // update the client
-    if($client->update()){
+    // delete the client
+    if($client->delete()){
     
         // set response code - 200 ok
         http_response_code(200);
     
         // tell the user
-        echo json_encode(array("message" => "Client was updated."));
+        echo json_encode(array("message" => "Client was deleted."));
+        $_SESSION['message'] = "Client was deleted.";
     }
     
-    // if unable to update the client, tell the user
+    // if unable to delete the client
     else{
     
         // set response code - 503 service unavailable
         http_response_code(503);
     
         // tell the user
-        echo json_encode(array("message" => "Unable to update the Client."));
+        echo json_encode(array("message" => "Unable to delete client."));
+        $_SESSION['message'] = "Unable to delete client.";
     }
 ?>

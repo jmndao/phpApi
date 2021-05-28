@@ -10,7 +10,7 @@
 
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="../static/css/master.css">
+    <link rel="stylesheet" href="./static/css/master.css">
 
 </head>
 
@@ -93,6 +93,6 @@
 </body>
 <!-- Materialize JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="../static/js/script.js"></script>
+<script src="./static/js/script.js"></script>
 
 </html>

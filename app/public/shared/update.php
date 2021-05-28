@@ -22,9 +22,11 @@
         $data = json_encode($payload);
 
         if($ut->APIRequest("UPDATE", $data)) {
-            echo "Client has been successfully updated.";
+            $_SESSION['message'] = $payload['id'] ." has been successfully updated.";
+            header("Location: ../web/profile.php");
         } else {
-            header('Location: ../web/error_connection.php');
+            $_SESSION['message'] = "Update operation has failed.";
+            header("Location: ../web/profile.php");
         }
 
     } else {

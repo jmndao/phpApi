@@ -28,7 +28,7 @@
                     FROM 
                         " . $this->tableName . " 
                     ORDER BY
-                        startedDate DESC";
+                        id ASC";
         
             // prepare query statement
             $stmt = $this->conn->prepare($query);

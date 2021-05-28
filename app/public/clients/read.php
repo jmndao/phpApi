@@ -1,4 +1,6 @@
 <?php
+
+    session_start();
     // required headers
     header("Access-Control-Allow-Origin: *");
     header("Content-Type: application/json; charset=UTF-8");
@@ -62,6 +64,7 @@
         echo json_encode(
             array("message" => "No client found.")
         );
+        $_SESSION['message'] = "No client found.";
     }
 
 

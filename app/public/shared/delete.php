@@ -13,9 +13,11 @@
         $data = json_encode(array("id" => $id));
 
         if($ut->APIRequest("DELETE", $data)) {
-            echo $id . " has been successfully deleted.";
+            $_SESSION['message']  = $id . " has been successfully deleted.";
+            header("Location: ../web/profile.php");
         } else {
-            header('Location: ../web/error_connection.php');
+            $_SESSION['message']  = "Deletion operation has failed.";
+            header("Location: ../web/profile.php");
         }
 
     } else {

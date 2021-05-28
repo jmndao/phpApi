@@ -45,7 +45,7 @@
                 <!-------------- Post Section ------------->
                 <div id="post" class="col s12 valign-wrapper">
 
-                    <form class="col s12" action="profile.php" method="POST">
+                    <form class="col s12" action="../shared/post.php" method="POST">
                         <div class="row">
                             <div class="input-field col s6">
                                 <input id="fname" name="first_name" type="text">
@@ -164,7 +164,7 @@
                             if ($_SESSION['message']) {
                                 echo $_SESSION['message'];
                             } else {
-                                echo "Message ...";
+                                echo "No  Message ...";
                             }
                         ?>
                     </p>
@@ -205,34 +205,6 @@
         </div>
         
     </div>
-
-    <?php
-
-        include('../shared/utilities.php');
-
-        $ut = new Utilities();
-
-        if($_SERVER['REQUEST_METHOD'] == "POST") {
-
-            $payload = array(
-                "first_name" => $_POST['first_name'],
-                "last_name" => $_POST['last_name'],
-                "accountNo" => $_POST['accountNo'],
-                "amount" => $_POST['amount'],
-                "code" => $_POST['code'] 
-            );
-
-            $data = json_encode($payload);
-
-            if($ut->APIRequest("POST", $data)) {
-                echo "POST data has been successfully posted.";
-                echo $ut->response;
-            } else {
-                header("Location: error_connection.php");
-            }
-
-        }
-    ?>
 
 </body>
 

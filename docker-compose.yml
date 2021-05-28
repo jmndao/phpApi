@@ -1,0 +1,30 @@
+version: "3.8"
+services: 
+    web:
+        image: nginx:latest
+        ports: 
+            - "80:80"
+        volumes:
+            - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+            - ./app:/app
+        depends_on: 
+            - mysql
+    php:
+        build:
+            context: .
+            dockerfile: PHP.Dockerfile
+        volumes: 
+            - ./app:/app
+    mysql:
+        image: mariadb:latest
+        environment: 
+            MYSQL_ROOT_PASSWORD: 'Passer123'
+            MYSQL_USER: 'malcom'
+            MYSQL_PASSWORD: 'Passer123'
+            MYSQL_DATABASE: 'Banque'
+        volumes: 
+            - mysqldata:/var/lib/mysql
+
+volumes: 
+    mysqldata: {}
+

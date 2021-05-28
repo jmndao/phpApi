@@ -1,4 +1,5 @@
 <?php
+
     class Utilities{
 
         public $response;
@@ -47,42 +48,50 @@
             
             // Curl Initialization
             $curl = curl_init();
-
+            
             // Methods
             switch ($method) {
                 
                 case "GET":
-                    $url = "http://localhost/sagnaProject/api/clients/read.php"; 
+                    $url = "http://web/clients/read.php"; 
                     curl_setopt($curl, CURLOPT_URL, $url);
                     curl_setopt($curl, CURLOPT_HTTPGET, true);
                     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    ob_start();
                     $response_json = curl_exec($curl);
+                    ob_end_clean();
                     $this->response = json_decode($response_json, true);
                     break;
 
                 case "POST":
-                    $url = "http://localhost/sagnaProject/api/clients/create.php";
+                    $url = "http://web/clients/create.php";
                     curl_setopt($curl, CURLOPT_URL, $url);
                     curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+                    ob_start();
                     $response_json = curl_exec($curl);
+                    ob_end_clean();
                     $this->response = json_decode($response_json, JSON_PRETTY_PRINT, true);
                     break;
 
                 case "DELETE":
-                    $url = "http://localhost/sagnaProject/api/clients/delete.php";
+                    $url = "http://web/clients/delete.php";
                     curl_setopt($curl, CURLOPT_URL, $url);
                     curl_setopt($curl,CURLOPT_CUSTOMREQUEST,'DELETE');
                     curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+                    ob_start();
                     $response_json = curl_exec($curl); 
+                    ob_end_clean();
                     $this->response=json_decode($response_json,true);
                     break;
 
                 case "UPDATE":
-                    $url = "http://localhost/sagnaProject/api/clients/update.php";
+                    $url = "http://web/clients/update.php";
                     curl_setopt($curl, CURLOPT_URL, $url);
                     curl_setopt($curl,CURLOPT_CUSTOMREQUEST,'UPDATE');
                     curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+                    ob_start();
                     $response_json = curl_exec($curl); 
+                    ob_end_clean();
                     $this->response=json_decode($response_json,true);
                     break;
                 
@@ -99,6 +108,11 @@
             return true;
 
          }
+
+        public function redirect($url, $permanent = false){
+            header('Location: ' . $url, true, $permanent ? 301 : 302);
+            exit();
+        }
     
     }
 ?>

@@ -1,4 +1,5 @@
 <?php
+    session_start();
     // required headers
     header("Access-Control-Allow-Origin: *");
     header("Content-Type: application/json; charset=UTF-8");
@@ -46,6 +47,7 @@
     
             // tell the user
             echo json_encode(array("message" => "Client was created."));
+            $_SESSION['message'] = "Client was created";
         }
     
         // if unable to create the client, tell the user
@@ -56,6 +58,7 @@
     
             // tell the user
             echo json_encode(array("message" => "Can't create a client."));
+            $_SESSION['message'] = "Can't create a client";
         }
     }
     
@@ -67,6 +70,7 @@
     
         // tell the user
         echo json_encode(array("message" => "Unable to create a client. Data is incomplete."));
+        $_SESSION['message'] = "Unable to create a client. Data is incomplete.";
     }
 
 
